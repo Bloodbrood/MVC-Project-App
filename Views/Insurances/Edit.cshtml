@@ -1,0 +1,62 @@
+﻿@model ProjectApp.Models.Insurance
+
+@{
+    ViewData["Title"] = "Upravit";
+}
+
+<h1>Upravit</h1>
+
+<h4>Pojištení</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="hidden" asp-for="PersonId" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Castka" class="control-label">Částka</label>
+                <input asp-for="Castka" class="form-control" />
+                <span asp-validation-for="Castka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlatnostOd" class="control-label">Platnost od</label>
+                <input asp-for="PlatnostOd" class="form-control" />
+                <span asp-validation-for="PlatnostOd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlatnostDo" class="control-label">Platnost do</label>
+                <input asp-for="PlatnostDo" class="form-control" />
+                <span asp-validation-for="PlatnostDo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PredmetPojisteni" class="control-label">Předmět pojištění</label>
+                <input asp-for="PredmetPojisteni" class="form-control" />
+                <span asp-validation-for="PredmetPojisteni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Typ" class="control-label">Typ</label>
+                <select asp-for="Typ" class="form-control">
+                    <option value="Majetek">Majetek</option>
+                    <option value="Osoba">Osoba</option>
+                </select>
+                <span asp-validation-for="Typ" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Uložit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Zpět na seznam pojištení</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

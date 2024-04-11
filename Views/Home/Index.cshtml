@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vítejte v mé Aplikaci</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <!-- Zobrazení pro přihlášeného uživatele -->
+        <div>
+            <p>Vítejte, @User.Identity.Name!</p>
+            <a class="btn btn-primary"asp-controller="People" asp-action="Index">Vytvořit pojištění</a>
+            <a class="btn btn-primary" asp-controller="People" asp-action="Create">Založit Pojištěnce</a>
+        </div>
+    }
+    else
+    {
+        <!-- Zobrazení pro nepřihlášeného uživatele -->
+        <div>
+            <p>Nejprve si prosím založte uživatelský účet.</p>
+            <a class="btn btn-primary" href="Account/Register">Registrovat se</a>
+            <p>Pokud máte účet již vytvořený, tak se prosím přihlašte</p>
+            <a class="btn btn-primary" href="Account/Login">Přihlásit se</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProjectApp.Models.Insurance>
+
+@{
+    ViewData["Title"] = "Přehled pojištení";
+
+}
+
+<h1>Přehled Pojištení</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Castka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlatnostOd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlatnostDo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PredmetPojisteni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Typ)
+            </th>
+            <th>
+                Pojistitel
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Castka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlatnostOd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlatnostDo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PredmetPojisteni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Typ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.Jmeno) @* Zde zobrazujeme jméno pojistitele *@
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Upravit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Podrobnosti</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Smazat</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

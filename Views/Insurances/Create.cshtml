@@ -1,0 +1,70 @@
+﻿@using static ProjectApp.Models.Insurance
+@model ProjectApp.Models.Insurance
+
+@{
+    ViewData["Title"] = "Vytvořit";
+    // Získání hodnoty personId z URL
+    var personId = Context.Request.Query["personId"];
+}
+
+
+<h4>Pojištení</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-route-personId="@ViewBag.PersonId" method="post">
+            <!-- Zde můžete mít zbytek formuláře -->
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Castka" class="control-label"></label>
+                <input asp-for="Castka" class="form-control" />
+                <span asp-validation-for="Castka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlatnostOd" class="control-label"></label>
+                <input asp-for="PlatnostOd" class="form-control" />
+                <span asp-validation-for="PlatnostOd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlatnostDo" class="control-label"></label>
+                <input asp-for="PlatnostDo" class="form-control" />
+                <span asp-validation-for="PlatnostDo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Jméno pojistitele</label>
+                <input class="form-control" readonly value="@ViewData["PersonName"]" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PredmetPojisteni" class="control-label"></label>
+                <input asp-for="PredmetPojisteni" class="form-control" />
+                <span asp-validation-for="PredmetPojisteni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Typ" class="control-label"></label>
+                <select asp-for="Typ" class="form-control">
+                    <option value="">-- Vyberte Typ Pojištění --</option>
+                    @foreach (var type in Enum.GetValues(typeof(TypPojisteni)))
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+                <span asp-validation-for="Typ" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Vytvořit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Zpět na seznam Pojištení</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

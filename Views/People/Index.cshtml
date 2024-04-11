@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ProjectApp.Models.Person>
+
+@{
+    ViewData["Title"] = "Přehled Pojištenců";
+}
+
+<h1>Pojištěnci</h1>
+
+<p>
+    <a asp-action="Create">Vytvořit</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Jmeno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prijmeni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelefoniCislo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ulice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CisloPopisne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PSC)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jmeno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prijmeni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefoniCislo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ulice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CisloPopisne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PSC)
+            </td>
+
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Upravit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Smazat</a> |
+                <a asp-action="Create" asp-controller="Insurances" asp-route-personId="@item.Id">Vytvořit pojištění</a>
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
